@@ -1,9 +1,10 @@
 import cron from 'node-cron';
 import {PrismaClient, TypeAction} from '@prisma/client';
+import {Server} from "socket.io";
 
 const prisma = new PrismaClient();
 
-const  startQueue = async () => {
+const  startQueue = async (io: Server) => {
   const action = await prisma.action.findFirst({
     where: {
       state: 'NON_CONSUMED',
@@ -36,8 +37,7 @@ const  startQueue = async () => {
       });
       if(!actionCron || actionCron.typeAction.currentValue === 0) {
         compteur += 1
-        console.log('compteur ', compteur);
-        if(compteur === 10) { // ICI mettre 40
+        if(compteur === 40) { // ICI mettre 40
           await initCreditTypeAction();
           compteur = 0;
         }
@@ -53,6 +53,7 @@ const  startQueue = async () => {
           data: { currentValue : actionCron.typeAction.currentValue - 1 }
         })
       }
+      io.emit('queueUpdated'); // Émettre un événement à chaque mise à jour de la queue
     } catch (error) {
       console.error('Error executing task:', error);
     }

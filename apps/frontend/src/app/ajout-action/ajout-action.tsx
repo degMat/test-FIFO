@@ -38,7 +38,12 @@ const ButtonAdd = styled.button`
 const NumberCredit = styled.h2 `
   color: #8c25e1;
 `;
-export function AjoutAction( {onActionAdded}: { onActionAdded: () => void }) {
+
+interface AjoutActionProps {
+  reload: boolean;
+  onActionAdded: () => void;
+}
+export function AjoutAction( { reload, onActionAdded }: AjoutActionProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
 
@@ -50,14 +55,13 @@ export function AjoutAction( {onActionAdded}: { onActionAdded: () => void }) {
         setIsLoading(false);
       });
 
-  }, []);
+  }, [reload]);
 
   const handleAddAction = (typeActionId: number) => {
     ApiService.addActionInQueue(typeActionId)
       .then(response => {
         console.log(response.data.message);
         onActionAdded();
-        // Vous pouvez mettre à jour l'état ou rafraîchir la liste si nécessaire
       })
       .catch(error => {
         console.error('Error adding action:', error);

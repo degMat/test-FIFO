@@ -1,6 +1,8 @@
 import prisma from "../prisma/client";
+import {Action} from "@prisma/client";
 
-export const getAllActions = async (page: number, pageSize: number) => {
+export const getAllActions = async (page: number, pageSize: number): Promise<{actions: Action[], pagination: {
+    total: number, page: number, pageSize: number, isFirstPage: boolean,isLastPage: boolean}}> => {
   const actions = await prisma.action.findMany({
     where: {
       state: 'NON_CONSUMED',
@@ -35,7 +37,7 @@ export const getAllActions = async (page: number, pageSize: number) => {
   };
 };
 
-export const addAction = async (typeActionId: number) => {
+export const addAction = async (typeActionId: number): Promise<Action> => {
 
   return prisma.action.create({
     data: {
@@ -45,6 +47,4 @@ export const addAction = async (typeActionId: number) => {
       createdAt: new Date(),
     }
   });
-
-
 };

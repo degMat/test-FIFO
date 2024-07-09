@@ -67,6 +67,7 @@ It will show tasks that you can run with Nx.
 - Utilisation de prisma pour la bdd.
 - Jtest pour les tests coté backend
 - cron pour gérer les taches de fond
+- socket.io pour les webSockets
 
 ### Installation
 - npm install
@@ -83,5 +84,7 @@ Permet de tester Service et Controller pour les actions
 ### Amélioration
 Possible de rajouter des tests pour Service et Controller typeActions 
 Amélioration possible avec une architecture plus complexe en utilisant "inversify" : 
+
 - Mise en place de Class avec constructeur
 
+Le timing est toutes les 15 secondes sans reset. On pourrait l'activer dès qu'une action est ajoutée dans la pile et seulement s'il y avait aucune action avant.
