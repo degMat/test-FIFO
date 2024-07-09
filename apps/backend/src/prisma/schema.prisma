@@ -1,0 +1,32 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model TypeAction {
+  id           Int      @id @default(autoincrement())
+  libelle      String   @unique()
+  creditMax    Int
+  createdAt    DateTime @default(now())
+  currentValue Int
+  Action       Action[]
+}
+
+enum EntityState {
+  ARCHIVED
+  NON_CONSUMED
+  CONSUMED
+}
+
+model Action {
+  id           Int         @id @default(autoincrement())
+  libelle      String
+  typeAction   TypeAction  @relation(fields: [typeActionId], references: [id])
+  typeActionId Int
+  createdAt    DateTime    @default(now())
+  state        EntityState @default(NON_CONSUMED)
+}

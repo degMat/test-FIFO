@@ -1,6 +1,9 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
     "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
@@ -14,7 +17,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "@test-boilerplate/shared-models": ["libs/shared-models/src/index.ts"]
+    },
     "strictNullChecks": true,
     "resolveJsonModule": true
   },

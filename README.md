@@ -60,3 +60,28 @@ It will show tasks that you can run with Nx.
 - [Join the community](https://nx.dev/community)
 - [Subscribe to the Nx Youtube Channel](https://www.youtube.com/@nxdevtools)
 - [Follow us on Twitter](https://twitter.com/nxdevtools)
+
+
+## Information complémentaire sur le test Technique
+
+- Utilisation de prisma pour la bdd.
+- Jtest pour les tests coté backend
+- cron pour gérer les taches de fond
+
+### Installation
+- npm install
+- npx prisma migrate dev --schema apps/backend/src/prisma/schema.prisma 
+- npx prisma generate --schema apps/backend/src/prisma/schema.prisma  
+- npx prisma bd seed
+- npx nx serve backend 
+- npx nx serve frontend
+
+### Test
+Permet de tester Service et Controller pour les actions
+- npx nx test backend
+
+### Amélioration
+Possible de rajouter des tests pour Service et Controller typeActions 
+Amélioration possible avec une architecture plus complexe en utilisant "inversify" : 
+- Mise en place de Class avec constructeur
+
