@@ -64,9 +64,9 @@ It will show tasks that you can run with Nx.
 
 ## Information complémentaire sur le test Technique
 
-- Utilisation de prisma pour la bdd.
+- Utilisation de prisma + PostgreSQL pour la bdd.
 - Jtest pour les tests coté backend
-- cron pour gérer les taches de fond
+- cron pour gérer les taches de fonds
 - socket.io pour les webSockets
 
 ### Installation
